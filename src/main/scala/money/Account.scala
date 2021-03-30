@@ -23,4 +23,8 @@ object Account {
   lazy val local: Currency = Currency.Euro
 
   def apply(amount: Double, currency: Currency): Account = new Account(amount, currency)
+
+  implicit class Factor(factor: Double) {
+    def *(a: Account): Account = Account(factor * a.amount, a.currency)
+  }
 }
